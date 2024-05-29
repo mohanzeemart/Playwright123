@@ -1,0 +1,2 @@
+"Status","Start Time","Stop Time","Duration in ms","Parent Suite","Suite","Sub Suite","Test Class","Test Method","Name","Description"
+"failed","Wed May 29 14:30:46 IST 2024","Wed May 29 14:31:25 IST 2024","38925","chromium","login.spec.ts","Login","","","Login Zeemart Buyer Hub page",""
