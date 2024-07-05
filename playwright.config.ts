@@ -26,21 +26,21 @@ export default defineConfig({
 
   },
   /* Run tests in files in parallel */
-  fullyParallel: true,
-  // fullyParallel: false,
+  /* fullyParallel: true,*/
+  fullyParallel: false,
   /* Fail the build on CI if you accidentally left test.only in the source code. */
   forbidOnly: !!process.env.CI,
   /* Retry on CI only */
-  retries: process.env.CI ? 2 : 0,   //0 change to 2 means two times retry the test cases.
+  retries: process.env.CI ? 2 : 0,   /*0 change to 2 means two times retry the test cases.*/
 
   /* Opt out of parallel tests on CI. */
   workers: process.env.CI ? 1 : undefined,
   /* Reporter to use. See https://playwright.dev/docs/test-reporters */
-  reporter: 'html',
-  
-   /*[ ['html'],
-        ['list'],
-        //  ['allure-playwright', {outputFolder: 'test result'}]], */
+  reporter: 
+   [['html'], ['list']  ],
+
+        /* ['allure-playwright', {outputFolder: 'test result mohan 123'}] */
+      
       
 
     /* globalSetup: require.resolve('./utils/global.setup'),*/
