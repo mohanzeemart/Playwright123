@@ -1,5 +1,6 @@
 import { defineConfig, devices } from '@playwright/test';
 
+
 /**
  * Read environment variables from file.
  * https://github.com/motdotla/dotenv
@@ -11,6 +12,14 @@ import { defineConfig, devices } from '@playwright/test';
  */
 export default defineConfig({
   testDir: './tests',
+  // testMatch: [
+  //   // '**.spec.js',  /*run all test files*/
+    
+  //   'login.spec.ts', 
+  //   'buyerInvoiceUpload.spec.ts' 
+  // ],
+  // testIgnore: 'login.spec.ts',
+
   timeout: 50*1000,
   expect:{ 
     timeout:15000
@@ -18,29 +27,36 @@ export default defineConfig({
   },
   /* Run tests in files in parallel */
   fullyParallel: true,
+  // fullyParallel: false,
   /* Fail the build on CI if you accidentally left test.only in the source code. */
   forbidOnly: !!process.env.CI,
   /* Retry on CI only */
-  retries: process.env.CI ? 2 : 0,
+  retries: process.env.CI ? 2 : 0,   //0 change to 2 means two times retry the test cases.
+
   /* Opt out of parallel tests on CI. */
   workers: process.env.CI ? 1 : undefined,
   /* Reporter to use. See https://playwright.dev/docs/test-reporters */
-  reporter: [
-    // ['html'], 
-    // ['list'],
-     ['allure-playwright'] ],
+  reporter: 'html',
+  
+   /*[ ['html'],
+        ['list'],
+        //  ['allure-playwright', {outputFolder: 'test result'}]], */
+      
 
-
+    /* globalSetup: require.resolve('./utils/global.setup'),*/
+        
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {
+    
     /* Base URL to use in actions like `await page.goto('/')`. */
-    // baseURL: 'http://127.0.0.1:3000',
+    /* baseURL: 'https://dev-buyer.zeemart.asia',*/
 
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
-    trace: 'on-first-retry',
+    trace: 'on',
+
     launchOptions: {
       // 1
-      args: ["--start-maximized"],  //maximaze window commend
+      args: ["--start-maximized"]  //maximaze window commend
     },
   },
 
@@ -49,7 +65,7 @@ export default defineConfig({
     {
       name: 'chromium',
       use: { 
-        // ...devices['Desktop Chrome']
+        // ...devices['Desktop Chrome'],
         headless: false,   //Open window commend -false , close- true
         viewport: null,   //maximaze window commend
       },
